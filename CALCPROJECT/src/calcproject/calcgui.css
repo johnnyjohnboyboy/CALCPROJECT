@@ -1,0 +1,13 @@
+
+Button{
+     -fx-background-color: #CCFF99;
+    -fx-effect: dropshadow( two-pass-box , darkslategray , 8 , 0.0 , 2 , 0 );
+
+}
+
+.label{
+    -fx-text-fill:firebrick;
+    
+    
+}
+
