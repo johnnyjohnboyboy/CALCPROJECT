@@ -5,7 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 public class CALCGUIController {
-private String crntArth0pt= "Add";
+private String crntArth0pt= "DEFAULT";
+private String opd1="0";
     @FXML
     private Button btn0;
 
@@ -37,9 +38,6 @@ private String crntArth0pt= "Add";
     private Button btn9;
 
     @FXML
-    private Label result;
-
-    @FXML
     private Button addition;
 
     @FXML
@@ -53,102 +51,94 @@ private String crntArth0pt= "Add";
 
     @FXML
     private Button equalbtn;
-    @FXML
-    private TextField operand1;
-    @FXML
-    private TextField operand2;
+        @FXML
+    private TextField txtBox;
 
-    @FXML
-    void AddNums(ActionEvent event) {
-        
-crntArth0pt= "ADD";
 
-    }
 
-    @FXML
-    void MultiNums(ActionEvent event) {
-crntArth0pt= "MULTIPLY";
-    }
-
-    @FXML
-    void divideNums(ActionEvent event) {
-crntArth0pt= "DIVIDE";
-    }
     
-    @FXML
-    void subtractNums(ActionEvent event) {
-crntArth0pt= "SUBTRACT";
-    }
-    
-    @FXML
+        @FXML
     void prcssNums(ActionEvent event) {
-        if ( ((Button)event.getSource() ).getText().equals("1"))
-         {
-        operand1.setText(operand1.getText() +"1");
-        }
-        
-        if ( ((Button)event.getSource() ).getText().equals("2"))
-        {
-        operand1.setText(operand1.getText()+"2");
-        }
-        
-        if ( ((Button)event.getSource() ).getText().equals("3"))
-        {
-        operand1.setText(operand1.getText()+"3");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("4"))
-        {
-        operand1.setText(operand1.getText()+"4");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("5"))
-        {
-        operand1.setText(operand1.getText()+"5");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("6"))
-        {
-        operand1.setText(operand1.getText()+"6");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("7"))
-        {
-        operand1.setText(operand1.getText()+"7");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("8"))
-        {
-        operand1.setText(operand1.getText()+"8");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("9"))
-        {
-        operand1.setText(operand1.getText()+"9");
-        }
-        if ( ((Button)event.getSource() ).getText().equals("0"))
-        {
-        operand1.setText(operand1.getText()+"0");
-        }
-        
-        
+Button btn = (Button)event.getSource();
+        switch(btn.getText()){
+         case"0": txtBox.setText(txtBox.getText()+"0");break;
+         case"1": txtBox.setText(txtBox.getText()+"1");break;
+         case"2": txtBox.setText(txtBox.getText()+"2");break;
+         case"3": txtBox.setText(txtBox.getText()+"3");break;
+         case"4": txtBox.setText(txtBox.getText()+"4");break;
+         case"5": txtBox.setText(txtBox.getText()+"5");break;
+         case"6": txtBox.setText(txtBox.getText()+"6");break;
+         case"7": txtBox.setText(txtBox.getText()+"7");break;
+         case"8": txtBox.setText(txtBox.getText()+"8");break;
+         case"9": txtBox.setText(txtBox.getText()+"9");break;
+         case".": txtBox.setText(txtBox.getText()+".");break;
     }
-    
-   
+    }
 
+    @FXML
+      void arthOp(ActionEvent event) { 
+          
+       if( ((Button)event.getSource()).getText().equals("+"))
+       {
+          if(crntArth0pt.equals("DEFAULT"))
+          {
+           opd1=txtBox.getText();
+           crntArth0pt="ADD";
+           txtBox.clear();
+          }
+       }
+       else if( ((Button)event.getSource()).getText().equals("-")) 
+       {
+           if(crntArth0pt.equals("DEFAULT"))
+          {
+           opd1=txtBox.getText();
+           crntArth0pt="SUBTRACT";
+           txtBox.clear();
+          }
+       }
+        
+         else if( ((Button)event.getSource()).getText().equals("*")) 
+       {
+           if(crntArth0pt.equals("DEFAULT"))
+          {
+           opd1=txtBox.getText();
+           crntArth0pt="MULTIPLY";
+           txtBox.clear();
+          }
+       }
+         
+        else 
+       {
+           if(crntArth0pt.equals("DEFAULT"))
+          {
+           opd1=txtBox.getText();
+           crntArth0pt="DIVIDE";
+           txtBox.clear();
+          }
+       }
+    }
+      
+    
+    
+    
     @FXML
     void processOprtn(ActionEvent event) {
-        String opd1 = operand1.getText();
-        String opd2 = operand2.getText();
-        int num1 = Integer.parseInt(opd1);
-        int num2 = Integer.parseInt(opd2);    
+        
+        double num1 = Double.parseDouble(opd1);
+        double num2 = Double.parseDouble(txtBox.getText());    
         if(crntArth0pt.equals("ADD"))
         {
             
-                result.setText( "" + (num1+num2));
+                txtBox.setText( "" + (num1+num2));
         }
         else if(crntArth0pt.equals("SUBTRACT"))
         {
-            result.setText("" + (num1*num2));
+            txtBox.setText("" + (num1*num2));
         }
        
         else if(crntArth0pt.equals("MULTIPLY"))
         {
-            result.setText("" + (num1*num2));
+            txtBox.setText("" + (num1*num2));
         }
                 
                 
@@ -156,18 +146,16 @@ crntArth0pt= "SUBTRACT";
          {
           if(num2==0)
           {
-           result.setText("DIVISION BY ZERO ERROR");   
+           txtBox.setText("DIVISION BY ZERO ERROR"); 
+          
           }
           
           else{
-             result.setText("" + (num1/num2));      
+             txtBox.setText("" + (num1/num2));      
           }
                   
          }
          }
         }
     
-
-    
-
 
